@@ -1,29 +1,7 @@
 import React from 'react';
+import { selectItem } from '../components/Helpers';
 
-const selectItem = (e) => {
-
-    if (e.target === e.currentTarget) {
-        return false;
-    } else {
-        
-        console.log(e.target)
-
-        let getChildren = e.currentTarget.childNodes;
-
-        console.log(getChildren)
-
-        for (let i = 0; i < getChildren.length; i++) {
-            let child = getChildren[i];
-            if (e.target === child) {
-                e.target.className = 'selected';
-            } else {
-                child.className = '';
-            }
-        }
-    }
-}
-
-function Content(props) {
+const Content = (props) => {
     if (props.intro) {
         return (
             <React.Fragment>
@@ -38,7 +16,7 @@ function Content(props) {
                 <h1>{props.question}</h1>
                 <ul className="choices" onClick={(e) => selectItem(e)}>
                     {props.choices.map((choice, i) => {
-                        return <li key={i}>{choice}</li>
+                        return <li id={i} key={i}>{choice}</li>
                     })}
                 </ul>
                 <button onClick={props.check} className="btn btn-lg btn-primary btn-block">Check Answer</button>

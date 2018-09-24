@@ -40,16 +40,16 @@ class App extends React.Component {
         }
     }
 
-    checkAnswer() {
-        console.log('click')
+    checkAnswer(e) {
         let correctAnswer = this.state.correctChoice;
-        // let getTabIndex = () => {
-        //     let getNodes = document.getElementsByTagName('li');
-        //     console.log(getNodes)
-        //     for (let i = 0; i <= getNodes.length; i++) {
-        //         console.log(getNodes[i])
-        //     }
-        // }
+        let getList = document.getElementsByTagName('li');
+        let selectedAnswer = document.getElementsByClassName('selected');
+        for (let i = 0; i < getList.length; i++) {
+            console.log(getList[i])
+            console.log(selectedAnswer)
+            console.log(correctAnswer)
+            console.log(correctAnswer === selectedAnswer)
+        }
     }
 
     startQuiz() {
