@@ -42,13 +42,14 @@ class App extends React.Component {
 
     checkAnswer(e) {
         let correctAnswer = this.state.correctChoice;
-        let getList = document.getElementsByTagName('li');
-        let selectedAnswer = document.getElementsByClassName('selected');
-        for (let i = 0; i < getList.length; i++) {
-            console.log(getList[i])
-            console.log(selectedAnswer)
-            console.log(correctAnswer)
-            console.log(correctAnswer === selectedAnswer)
+        let selectedAnswer = document.getElementsByClassName('selected')[0];
+        if (selectedAnswer.id !== correctAnswer) {
+            selectedAnswer.className += ' incorrect';
+        } else {
+            selectedAnswer.className += ' correct';
+            this.setState({
+                score: this.state.score + 1
+            })
         }
     }
 

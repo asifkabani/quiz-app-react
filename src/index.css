@@ -7,6 +7,7 @@
   --blue-shadow: #001D60;
   --white: #FFF;
   --green: #1EA50D;
+  --red: #C10C0C;
   --ls1: 1px;
 }
 
@@ -82,12 +83,18 @@ li:hover {
   outline: none;
 }
 
-.not-selected {
-  background-color: var(--blue-shadow);
-  color: var(--blue-shadow);
+.correct {
+  background-color: var(--green);
   border-radius: 50px;
-  cursor: pointer;
-  outline: none;
+  color: var(--white);
+  transition: background-color 0.5s ease;
+}
+
+.incorrect {
+  background-color: var(--red);
+  border-radius: 50px;
+  color: var(--white);
+  transition: background-color 0.5s ease;
 }
 
 button {
