@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300|Noto+Serif+JP:900');
+
+:root {
+  --main-font: 'Roboto', sans-serif;
+  --secondary-font: 'Noto Serif JP', serif;
+  --blue: #1d56da;
+  --blue-shadow: #001D60;
+  --white: #FFF;
+  --green: #1EA50D;
+  --ls1: 1px;
+}
+
+body {
+  background: url('../src/bg.png');
+  font-family: var(--main-font);
+  color: var(--white);
+  font-size: 1em;
+  font-weight: 100;
+}
+
+.page {
+  padding: 2rem;
+}
+
+.hide-show {
+  opacity: 0;
+}
+
+.qcount {
+  letter-spacing: var(--ls1);
+}
+
+.score {
+  letter-spacing: var(--ls1);
+  text-align: right;
+}
+
+.qcount-heading {
+  margin: 4rem 0;
+  font-size: 1rem;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.intro {
+  font-size: 3rem;
+  padding-bottom: 3rem;
+}
+
+.intro > span {
+  font-family: var(--secondary-font);
+}
+
+ul {
+  list-style-type: none;
+  margin: 3rem 0;
+  padding: 0;
+}
+
+ul > li {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  font-weight: bold;
+}
+
+li:hover {
+  background-color: var(--white);
+  color: var(--blue-shadow);
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+}
+
+.selected {
+  background-color: var(--white);
+  color: var(--blue-shadow);
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+}
+
+.not-selected {
+  background-color: var(--blue-shadow);
+  color: var(--blue-shadow);
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+}
+
+button {
+  margin: 5rem auto;
+  height: 100px;
+  text-transform: uppercase;
+  border-radius: 50px !important;
+  background-color: #1d56da !important;
+  border: none !important;
+  box-shadow: #001D60 0px 10px 0px 0px;
+  letter-spacing: 0.3rem;
+  font-size: 18px !important;
+}
