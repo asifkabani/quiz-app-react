@@ -1,22 +1,37 @@
 import React from 'react';
+import Button from './Button';
+console.log(Button)
 
-const selectItem = (e) => {
-    if (e.target === e.currentTarget) {
-        return false;
-    } else {
-        let button = document.getElementsByTagName('button')[0];
-        let getChildren = e.currentTarget.childNodes;
-        for (let i = 0; i < getChildren.length; i++) {
-            let child = getChildren[i];
-            if (e.target === child) {
-                e.target.className = 'selected';
-            } else {
-                child.className = '';
-            }
+const toggleClass = (e, props) => {
+    const listItems = document.getElementsByTagName('li');
+    for (let i = 0; i < listItems.length; i++) {
+        let child = listItems[i];
+        if (e.target === child) {
+            e.target.className = 'selected';
+        } else {
+            child.className = '';
         }
-        button.innerHTML = 'check answer';
-        button.addEventListener('click', this.checkAnswer);
     }
+}
+
+const selectItem = (e, props) => toggleClass(e, props);
+
+const createList = (props) => {
+    return(
+        <ul className="choices">
+            {props.choices.map((choice, i) => {
+                return (
+                    <li
+                        onClick={(e) => selectItem(e)}
+                        onMouseUp={(e) => props.selected(e)}
+                        id={i}
+                        key={i}
+                    >{choice}
+                    </li>
+                );
+            })}
+        </ul>
+    );
 }
 
 const Question = (props) => {
@@ -24,11 +39,7 @@ const Question = (props) => {
         <React.Fragment>
             <h4 className="qcount-heading">Question {props.count}</h4>
             <h1 className="content">{props.question}</h1>
-            <ul className="choices" onClick={(e) => selectItem(e)}>
-                {props.choices.map((choice, i) => {
-                    return <li id={i} key={i}>{choice}</li>
-                })}
-            </ul>
+            {createList(props)}
         </React.Fragment>
     );
 }

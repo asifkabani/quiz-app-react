@@ -12,6 +12,11 @@ const randomize = (arr) => {
     })
 }
 
+const showTopBar = () => {
+    let showTopBar = document.getElementsByClassName('hide-show')[0];
+    showTopBar.style.opacity = 1;
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -23,9 +28,11 @@ class App extends Component {
             currentQuestion: null,
             answerChoices: [],
             correctChoice: null,
+            selectedAnswer: null,
             buttonType: 'intro'
         }
         this.startQuiz = this.startQuiz.bind(this);
+        this.selectedAnswer = this.selectedAnswer.bind(this);
         this.checkAnswer = this.checkAnswer.bind(this);
     }
 
@@ -41,20 +48,6 @@ class App extends Component {
         this.getQuestion();
     }
 
-    getNextQuestion() {
-        let selectedAnswer = document.getElementsByClassName('selected')[0];
-        console.log(selectedAnswer)
-        console.log(selectedAnswer.className)
-        selectedAnswer.className = '';
-        console.log(this.getQuestion)
-    }
-
-    nextQuestion() {
-        let button = document.getElementsByTagName('button')[0];
-        button.innerHTML = 'next question';
-        button.addEventListener('click', this.getNextQuestion);
-    }
-
     getQuestion() {
         if (this.state.quizQuestions.length > 0) {
             let question = this.state.quizQuestions.shift();
@@ -66,30 +59,32 @@ class App extends Component {
         }
     }
 
-    checkAnswer() {
-        let selectedAnswer = document.getElementsByClassName('selected')[0];
-        if (!selectedAnswer) {
-            return false;
-        } else {
+    checkAnswer(e) {
+        const { correctChoice, selectedAnswer } = this.state;
+        let getSelectedEl = document.getElementsByClassName('selected')[0];
+        if (selectedAnswer !== correctChoice) {
+            getSelectedEl.className += ' incorrect';
             this.setState({
-                isSelected: true
-            })
-            let correctAnswer = this.state.correctChoice;
-            if (selectedAnswer.id !== correctAnswer) {
-                selectedAnswer.className += ' incorrect';
-            } else {
-                selectedAnswer.className += ' correct';
-                this.setState({
-                    userScore: this.state.userScore + 1
-                })
-            }
-            this.nextQuestion();
+                buttonType: 'next'
+            });
+        } else {
+            getSelectedEl.className += ' correct';
+            this.setState({
+                userScore: this.state.userScore + 1,
+                buttonType: 'next'
+            });
         }
     }
 
+    selectedAnswer(e) {
+        this.setState({
+            buttonType: 'selected',
+            selectedAnswer: e.currentTarget.id
+        });
+    }
+
     startQuiz() {
-        const showTopBar = document.getElementsByClassName('hide-show')[0];
-        showTopBar.style.opacity = 1;
+        showTopBar();
         this.setState({
             isIntro: false,
             questionCount: this.state.questionCount + 1,
@@ -110,17 +105,20 @@ class App extends Component {
                 </div>
                 <div className="row justify-content-center text-center">
                     <div className="col-sm-12">
-                        {this.state.isIntro ? <Intro /> :
+                        {this.state.isIntro ?
+                            <Intro /> :
                             <Question
                                 question={this.state.currentQuestion}
                                 choices={this.state.answerChoices}
                                 correct={this.state.correctChoice}
                                 count={this.state.questionCount}
+                                selected={this.selectedAnswer}
                         />}
                         <Button
                             type={this.state.buttonType}
                             start={this.startQuiz}
                             check={this.checkAnswer}
+                            next={this.nextQuestion}
                         />
                     </div>
                 </div>
