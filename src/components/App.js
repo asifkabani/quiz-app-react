@@ -34,6 +34,7 @@ class App extends Component {
         this.startQuiz = this.startQuiz.bind(this);
         this.selectedAnswer = this.selectedAnswer.bind(this);
         this.checkAnswer = this.checkAnswer.bind(this);
+        this.nextQuestion = this.nextQuestion.bind(this);
     }
 
     componentWillMount() {
@@ -56,7 +57,19 @@ class App extends Component {
                 answerChoices: question.choices,
                 correctChoice: question.correct
             });
+        } else {
+            console.log('Game finished')
         }
+    }
+
+    nextQuestion() {
+        const getClassEl = document.getElementsByClassName('selected')[0];
+        getClassEl.className = '';
+        this.setState({
+            questionCount: this.state.questionCount + 1,
+            buttonType: 'question'
+        });
+        this.getQuestion();
     }
 
     checkAnswer(e) {
