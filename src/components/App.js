@@ -17,6 +17,11 @@ const showTopBar = () => {
     showTopBar.style.opacity = 1;
 }
 
+const hideTopBar = () => {
+    let hideTopBar = document.getElementsByClassName('hide-show')[0];
+    hideTopBar.style.opacity = 1;
+}
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -58,11 +63,16 @@ class App extends Component {
                 correctChoice: question.correct
             });
         } else {
-            console.log('Game finished')
+            this.setState({
+                buttonType: 'hide'
+            });
+            hideTopBar();
         }
     }
 
     nextQuestion() {
+        let getUL = document.getElementsByTagName('ul')[0];
+        getUL.style.pointerEvents = 'initial';
         const getClassEl = document.getElementsByClassName('selected')[0];
         getClassEl.className = '';
         this.setState({
@@ -75,13 +85,16 @@ class App extends Component {
     checkAnswer(e) {
         const { correctChoice, selectedAnswer } = this.state;
         let getSelectedEl = document.getElementsByClassName('selected')[0];
+        let getUL = document.getElementsByTagName('ul')[0];
         if (selectedAnswer !== correctChoice) {
             getSelectedEl.className += ' incorrect';
+            getUL.style.pointerEvents = 'none';
             this.setState({
                 buttonType: 'next'
             });
         } else {
             getSelectedEl.className += ' correct';
+            getUL.style.pointerEvents = 'none';
             this.setState({
                 userScore: this.state.userScore + 1,
                 buttonType: 'next'

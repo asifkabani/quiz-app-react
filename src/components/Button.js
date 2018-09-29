@@ -33,6 +33,8 @@ const Button = (props) => {
             >Next Question
             </button>
         );
+    } else if (props.type === 'hide') {
+        return <div></div>;
     }
 }
 

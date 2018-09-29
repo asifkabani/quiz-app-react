@@ -1,6 +1,4 @@
 import React from 'react';
-import Button from './Button';
-console.log(Button)
 
 const toggleClass = (e, props) => {
     const listItems = document.getElementsByTagName('li');
