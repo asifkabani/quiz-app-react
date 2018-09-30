@@ -2,7 +2,7 @@ import React from 'react';
 
 const Intro = () => {
     return (
-        <h1 className="intro">Do You<br /><span>Remember</span><br/>the<span> 90's?</span></h1>
+        <h1 className="intro"><span>Do You Remember<br/>the 90's?</span></h1>
     );
 }
 
