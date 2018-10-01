@@ -1,20 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300|Noto+Serif+JP:900');
 
-:root {
-  --main-font: 'Roboto', sans-serif;
-  --secondary-font: 'Noto Serif JP', serif;
-  --blue: #1d56da;
-  --blue-shadow: #001D60;
-  --white: #FFF;
-  --green: #1EA50D;
-  --red: #C10C0C;
-  --ls1: 1px;
-}
-
 body {
   background: url('../src/bg.png');
-  font-family: var(--main-font);
-  color: var(--white);
+  font-family: 'Roboto', sans-serif;
+  color: #FFF;
   font-size: 1em;
   font-weight: 100;
 }
@@ -28,11 +17,11 @@ body {
 }
 
 .qcount {
-  letter-spacing: var(--ls1);
+  letter-spacing: 1px;
 }
 
 .score {
-  letter-spacing: var(--ls1);
+  letter-spacing: 1px;
   text-align: right;
 }
 
@@ -44,17 +33,18 @@ body {
   text-align: center;
 }
 
-.intro {
-  font-size: 4rem;
-  padding-bottom: 3rem;
+.intro h1 {
+  font-size: 3.5rem;
+  padding-bottom: 2rem;
+  font-family: 'Noto Serif JP', serif;
 }
 
-.intro > span {
-  font-family: var(--secondary-font);
+.intro p {
+  font-size: 1.5rem;
 }
 
 .content {
-  font-family: var(--secondary-font);
+  font-family: 'Noto Serif JP', serif;
   line-height: 3.5rem;
   letter-spacing: 1px;
 }
@@ -74,32 +64,32 @@ ul > li {
 }
 
 li:hover {
-  background-color: var(--white);
-  color: var(--blue-shadow);
+  background-color: #FFF;
+  color: #001D60;
   border-radius: 50px;
   cursor: pointer;
   outline: none;
 }
 
 .selected {
-  background-color: var(--white);
-  color: var(--blue-shadow);
+  background-color: #FFF;
+  color: #001D60;
   border-radius: 50px;
   cursor: pointer;
   outline: none;
 }
 
 .correct {
-  background-color: var(--green);
+  background-color: #1EA50D;
   border-radius: 50px;
-  color: var(--white);
+  color: #FFF;
   transition: background-color 0.5s ease;
 }
 
 .incorrect {
-  background-color: var(--red);
+  background-color: #C10C0C;
   border-radius: 50px;
-  color: var(--white);
+  color: #FFF;
   transition: background-color 0.5s ease;
 }
 
@@ -108,9 +98,9 @@ button {
   height: 100px;
   text-transform: uppercase;
   border-radius: 50px !important;
-  border: 3px solid var(--white) !important;
+  border: 3px solid #FFF !important;
   letter-spacing: 0.3rem;
   font-weight: 700;
-  background-color: var(--blue) !important;
-  box-shadow: var(--blue-shadow) 0px 10px 0px 0px;
+  background-color: #1d56da !important;
+  box-shadow: #001D60 0px 10px 0px 0px;
 }
