@@ -117,8 +117,8 @@ class App extends Component {
 
     checkAnswer(e) {
         const { correctChoice, selectedAnswer } = this.state;
-        let getSelectedEl = document.getElementsByClassName('selected')[0];
-        let getUL = document.getElementsByTagName('ul')[0];
+        const getSelectedEl = document.getElementsByClassName('selected')[0];
+        const getUL = document.getElementsByTagName('ul')[0];
         if (selectedAnswer !== correctChoice) {
             getSelectedEl.className += ' incorrect';
             getUL.style.pointerEvents = 'none';
