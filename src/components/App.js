@@ -88,7 +88,7 @@ class App extends Component {
 
     getQuestion() {
         if (this.state.quizQuestions.length > 0) {
-            let question = this.state.quizQuestions.shift();
+            const question = this.state.quizQuestions.shift();
             this.setState({
                 currentQuestion: question.question,
                 answerChoices: question.choices,
@@ -104,10 +104,14 @@ class App extends Component {
     }
 
     nextQuestion() {
-        let getUL = document.getElementsByTagName('ul')[0];
+        const getUL = document.getElementsByTagName('ul')[0];
+        const children = getUL.childNodes;
         getUL.style.pointerEvents = 'initial';
-        const getClassEl = document.getElementsByClassName('selected')[0];
-        getClassEl.className = '';
+        children.forEach((item) => {
+            if (item.className) {
+                item.className = ''
+            }
+        });
         this.setState({
             questionCount: this.state.questionCount + 1,
             buttonType: 'question'
@@ -117,17 +121,23 @@ class App extends Component {
 
     checkAnswer(e) {
         const { correctChoice, selectedAnswer } = this.state;
-        const getSelectedEl = document.getElementsByClassName('selected')[0];
         const getUL = document.getElementsByTagName('ul')[0];
+        const correctItem = getUL.childNodes[`${correctChoice}`];
+        const getSelectedEl = document.getElementsByClassName('selected')[0];
+        const disableClick = () => getUL.style.pointerEvents = 'none';
         if (selectedAnswer !== correctChoice) {
             getSelectedEl.className += ' incorrect';
-            getUL.style.pointerEvents = 'none';
+            setTimeout(() => {
+                correctItem.className += ' correct';
+            }, 500);
+            disableClick();
             this.setState({
                 buttonType: 'next'
             });
         } else {
             getSelectedEl.className += ' correct';
             getUL.style.pointerEvents = 'none';
+            disableClick();
             this.setState({
                 userScore: this.state.userScore + 1,
                 buttonType: 'next'
