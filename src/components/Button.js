@@ -33,6 +33,14 @@ const Button = (props) => {
             >Next Question
             </button>
         );
+    } else if (props.type === 'finished') {
+        return (
+            <button
+                className="btn btn-lg btn-primary btn-block"
+                onClick={props.start}
+            >Retry Quiz?
+            </button>
+        );
     } else if (props.type === 'hide') {
         return <div></div>;
     }

@@ -14,12 +14,12 @@ const randomize = (arr) => {
 }
 
 const showTopBar = () => {
-    let showTopBar = document.getElementsByClassName('hide-show')[0];
+    const showTopBar = document.getElementsByClassName('hide-show')[0];
     showTopBar.style.opacity = 1;
 }
 
 const hideTopBar = () => {
-    let hideTopBar = document.getElementsByClassName('hide-show')[0];
+    const hideTopBar = document.getElementsByClassName('hide-show')[0];
     hideTopBar.style.opacity = 0;
 }
 
@@ -96,7 +96,7 @@ class App extends Component {
             });
         } else {
             this.setState({
-                buttonType: 'hide',
+                buttonType: 'finished',
                 content: 'finished'
             });
             hideTopBar();
@@ -129,14 +129,13 @@ class App extends Component {
             getSelectedEl.className += ' incorrect';
             setTimeout(() => {
                 correctItem.className += ' correct';
+                this.setState({
+                    buttonType: 'next'
+                });
             }, 500);
             disableClick();
-            this.setState({
-                buttonType: 'next'
-            });
         } else {
             getSelectedEl.className += ' correct';
-            getUL.style.pointerEvents = 'none';
             disableClick();
             this.setState({
                 userScore: this.state.userScore + 1,
